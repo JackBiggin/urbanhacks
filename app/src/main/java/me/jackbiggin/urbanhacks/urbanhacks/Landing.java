@@ -27,8 +27,6 @@ public class Landing extends AppCompatActivity {
     }
 
     public void openactivity(){
-        Intent intent = new Intent(this,MapsActivity.class);
-        startActivity(intent);
         Arena = (CheckBox) findViewById(R.id.Arenas);
         if (Arena.isChecked())
         {
@@ -36,5 +34,7 @@ public class Landing extends AppCompatActivity {
         }
         Intent arena = new Intent(this, MapsActivity.class);
         arena.putExtra("isArena", true);
+        Intent intent = new Intent(this,MapsActivity.class);
+        startActivity(intent);
     }
 }

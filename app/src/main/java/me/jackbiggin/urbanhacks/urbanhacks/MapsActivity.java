@@ -30,16 +30,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        /*
         Boolean isArena = getIntent().getExtras().getBoolean("isArena");
         if (isArena == true)
         {
             Log.d("MapsActivity","adsadadasdad");
         }
-    }
-
-    public void openmap(){
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        */
     }
 
 
