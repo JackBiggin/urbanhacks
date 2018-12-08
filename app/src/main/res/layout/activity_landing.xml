@@ -16,4 +16,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="329dp"
+        android:layout_height="66dp"
+        app:srcCompat="@drawable/logoblack"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="20dp"
+        tools:srcCompat="@drawable/logoblack" />
+
+    <CheckBox
+        android:id="@+id/Arenas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arenas"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="176dp" />
 </android.support.constraint.ConstraintLayout>
