@@ -40,13 +40,13 @@ public class Landing extends AppCompatActivity {
         Rec = (CheckBox) findViewById(R.id.Rec);
 
         intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
-        intent.putExtra("Arena", Arena.isChecked());
+        intent.putExtra("Beaches", Beaches.isChecked());
+        intent.putExtra("Campgrounds", Campgrounds.isChecked());
+        intent.putExtra("Soccer", Soccer.isChecked());
+        intent.putExtra("Baseball", Baseball.isChecked());
+        intent.putExtra("Tennis", Tennis.isChecked());
+        intent.putExtra("Basketball",  Basketball.isChecked());
+        intent.putExtra("Rec", Rec.isChecked());
         startActivity(intent);
 
 

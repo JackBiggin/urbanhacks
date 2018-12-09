@@ -40,11 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void openmap() {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
 
     /**
      * Manipulates the map once available.
@@ -68,7 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //get passed variables
 
         Boolean area = getIntent().getBooleanExtra("TEST", false);
-        Log.d("DAB ON EM          ", String.valueOf(area));
+        
 
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks?category=beach";
         request(url);
