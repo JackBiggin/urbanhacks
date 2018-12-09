@@ -1,11 +1,8 @@
 package me.jackbiggin.urbanhacks.urbanhacks;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.Button;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,6 +13,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
@@ -27,8 +26,6 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button button;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,42 +37,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void openmap() {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng point = new LatLng(43.27366276,-79.86750593);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
 
-        //get passed variables
+        //Adding markers based on request
+        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=";
 
-        Boolean area = getIntent().getBooleanExtra("TEST", false);
-        Log.d("DAB ON EM          ", String.valueOf(area));
-
-        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks?category=beach";
-        request(url);
+        if(getIntent().getBooleanExtra("Arena", false)){
+            request(url + "arena", 200F);
+        }
+        if(getIntent().getBooleanExtra("Beaches", false)){
+            request(url + "beach", 250F);
+        }
+        if(getIntent().getBooleanExtra("Campgrounds", false)){
+            request(url + "campground", 44F);
+        }
+        if(getIntent().getBooleanExtra("Soccer", false)){
+            request(url + "Soccer", 112F);
+        }
+        if(getIntent().getBooleanExtra("Baseball", false)){
+            request(url + "Baseball", 209F);
+        }
+        if(getIntent().getBooleanExtra("Tennis", false)){
+            request(url + "Tennis", 12F);
+        }
+        if(getIntent().getBooleanExtra("Basketball", false)){
+            request(url + "Basketball", 228F);
+        }
+        if(getIntent().getBooleanExtra("Rec", false)){
+            request(url + "rec", 215F);
+        }
     }
 
 
-    public void request(String url) {
+    public void request(String url, final Float colour) {
         //network code
         Log.d("Net code", "Starting network request");
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onResponse(String response) {
                         Log.d("Net code3 response:", response);
-                        parse(response);
+                        parse(response, colour);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -96,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         queue.add(stringRequest);
     }
 
-    public void parse(String data) {
+    public void parse(String data, final Float colour) {
         try {
             Gson googleJson = new Gson();
             Type type = new TypeToken<List<Location>>(){}.getType();
@@ -104,12 +104,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             for (Location s : objList) {
-                Log.d("Net code3", s.name + s.x + s.y);
+                addMarker(s.name , s.x , s.y, colour);
             }
 
         } catch (Exception e) {
             Log.d("Net code3", e.toString());
         }
+    }
+
+    public void addMarker(String name, double x, double y, final Float colour){
+        // Add a marker in Sydney and move the camera
+        LatLng point = new LatLng(x, y);
+        BitmapDescriptor bd = BitmapDescriptorFactory.defaultMarker(colour);
+
+        mMap.addMarker(new MarkerOptions().position(point).title(name).icon(bd));
     }
 }
 
