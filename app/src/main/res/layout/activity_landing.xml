@@ -60,6 +60,19 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <CheckBox
+        android:id="@+id/Library"
+        android:layout_width="172dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Library"
+        app:layout_constraintBottom_toTopOf="@+id/Beaches"
+        app:layout_constraintEnd_toStartOf="@+id/Baseball"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="0.856" />
+
+    <CheckBox
         android:id="@+id/Beaches"
         android:layout_width="173dp"
         android:layout_height="37dp"
@@ -101,6 +114,18 @@
         app:layout_constraintStart_toEndOf="@+id/Arenas"
         app:layout_constraintTop_toBottomOf="@+id/textview"
         app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/Museum"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        android:text="Museum"
+        app:layout_constraintBottom_toTopOf="@+id/Tennis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Arenas"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="0.856" />
 
     <CheckBox
         android:id="@+id/Tennis"

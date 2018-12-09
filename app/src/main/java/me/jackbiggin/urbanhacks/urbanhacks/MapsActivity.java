@@ -62,6 +62,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //get passed variables
 
+        Boolean Library = getIntent().getBooleanExtra("Library", false);
+        Boolean Museum = getIntent().getBooleanExtra("Museum", false);
         Boolean Arena = getIntent().getBooleanExtra("Arena", false);
         Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
         Boolean Campgrounds = getIntent().getBooleanExtra("Campgrounds", false);
