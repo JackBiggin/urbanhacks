@@ -1,8 +1,12 @@
 package me.jackbiggin.urbanhacks.urbanhacks;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,7 +29,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
@@ -64,7 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=";
 
         if(getIntent().getBooleanExtra("Arena", false)){
-            request(url + "arena", 200F);
+            request(url + "arena", 285F);
         }
         if(getIntent().getBooleanExtra("Beaches", false)){
             request(url + "beach", 250F);
@@ -76,7 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             request(url + "Soccer", 112F);
         }
         if(getIntent().getBooleanExtra("Baseball", false)){
-            request(url + "Baseball", 209F);
+            request(url + "Baseball", 36F);
         }
         if(getIntent().getBooleanExtra("Tennis", false)){
             request(url + "Tennis", 12F);
@@ -87,8 +91,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(getIntent().getBooleanExtra("Rec", false)){
             request(url + "rec", 215F);
         }
-
-        //last 2 colours 224, 240
+        if(getIntent().getBooleanExtra("Library", false)){
+            request(url + "library", 224F);
+        }
+        if(getIntent().getBooleanExtra("Museum", false)){
+            request(url + "museum", 60F);
+        }
     }
 
     @Override
@@ -97,8 +105,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.LENGTH_SHORT).show();
         Log.d("code3", marker.getTitle());
         Intent intent = new Intent(this,Site.class);
-        intent.putExtra("url", "http://pleasegiveusafreeraspberrypi.com/urbanhacks/?query=" + marker.getTitle() + "&uid=4");
-        startActivity(intent);
+
+        String search =  marker.getTitle();
+        if (search.equalsIgnoreCase("Baseball") ||search.equalsIgnoreCase("Basketball") ||search.equalsIgnoreCase("Soccer") ||search.equalsIgnoreCase("Tennis"))
+        {
+            Toast.makeText(this, "No Additional Info Available",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            intent.putExtra("url", "http://pleasegiveusafreeraspberrypi.com/urbanhacks/?query=" + marker.getTitle() + "&uid=4");
+            startActivity(intent);
+        }
     }
 
 

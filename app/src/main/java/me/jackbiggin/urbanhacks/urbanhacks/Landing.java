@@ -70,8 +70,6 @@ public class Landing extends AppCompatActivity {
         intent.putExtra("Basketball",  Basketball.isChecked());
         intent.putExtra("Rec", Rec.isChecked());
         startActivity(intent);
-
-
     }
 
     public void updatePoints()
