@@ -50,6 +50,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
         mMap.setOnInfoWindowClickListener(this);
 
+        Boolean Library = getIntent().getBooleanExtra("Library", false);
+        Boolean Museum = getIntent().getBooleanExtra("Museum", false);
+        Boolean Arena = getIntent().getBooleanExtra("Arena", false);
+        Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
+        Boolean Campgrounds = getIntent().getBooleanExtra("Campgrounds", false);
+        Boolean Soccer = getIntent().getBooleanExtra("Soccer", false);
+        Boolean Baseball = getIntent().getBooleanExtra("Baseball", false);
+        Boolean Tennis = getIntent().getBooleanExtra("Tennis", false);
+        Boolean Basketball = getIntent().getBooleanExtra("Basketball", false);
+        Boolean Rec = getIntent().getBooleanExtra("Rec", false);
         //Adding markers based on request
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=";
 
