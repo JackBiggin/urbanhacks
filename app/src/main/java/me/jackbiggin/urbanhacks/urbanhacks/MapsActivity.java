@@ -1,5 +1,6 @@
 package me.jackbiggin.urbanhacks.urbanhacks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -85,6 +86,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toast.makeText(this, "Opening Location Info",
                 Toast.LENGTH_SHORT).show();
         Log.d("code3", marker.getTitle());
+        Intent intent = new Intent(this,Site.class);
+        intent.putExtra("url", "http://pleasegiveusafreeraspberrypi.com/urbanhacks/?query=" + marker.getTitle());
+        startActivity(intent);
     }
 
 
