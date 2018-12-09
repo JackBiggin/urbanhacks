@@ -7,6 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Landing extends AppCompatActivity {
 
@@ -24,6 +35,14 @@ public class Landing extends AppCompatActivity {
                 openactivity();
             }
         });
+        updatePoints();
+        final long period = 0;
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                updatePoints();
+            }
+        }, 0, 5000);
     }
 
     public void openactivity(){
@@ -53,6 +72,30 @@ public class Landing extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+
+    public void updatePoints()
+    {
+        //network code
+        Log.d("Net code", "Starting network request");
+        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/get_points_count.php?uid=1";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Net code3 response:", response);
+                        TextView tv = findViewById(R.id.textView5);
+                        tv.setText(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Net code3", "Something is terribly wrong");
+            }
+        });
+        queue.add(stringRequest);
     }
 
 }

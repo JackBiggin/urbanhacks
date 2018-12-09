@@ -97,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.LENGTH_SHORT).show();
         Log.d("code3", marker.getTitle());
         Intent intent = new Intent(this,Site.class);
-        intent.putExtra("url", "http://pleasegiveusafreeraspberrypi.com/urbanhacks/?query=" + marker.getTitle());
+        intent.putExtra("url", "http://pleasegiveusafreeraspberrypi.com/urbanhacks/?query=" + marker.getTitle() + "&uid=4");
         startActivity(intent);
     }
 
