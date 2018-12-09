@@ -59,17 +59,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng point = new LatLng(43.27366276,-79.86750593);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
 
-        Boolean Arena = getIntent().getBooleanExtra("Arena", false);
-        Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
-        Boolean Campgrounds = getIntent().getBooleanExtra("Campgrounds", false);
-        Boolean Soccer = getIntent().getBooleanExtra("Soccer", false);
-        Boolean Baseball = getIntent().getBooleanExtra("Baseball", false);
-        Boolean Tennis = getIntent().getBooleanExtra("Tennis", false);
-        Boolean Basketball = getIntent().getBooleanExtra("Basketball", false);
-        Boolean Rec = getIntent().getBooleanExtra("Rec", false);
+        //Adding markers based on request
+        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=";
 
-        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=beach";
-        request(url);
+        if(getIntent().getBooleanExtra("Arena", false)){
+            request(url + "arena");
+        }
+        if(getIntent().getBooleanExtra("Beaches", false)){
+            request(url + "beach");
+        }
+        if(getIntent().getBooleanExtra("Campgrounds", false)){
+            request(url + "campground");
+        }
+        if(getIntent().getBooleanExtra("Soccer", false)){
+            request(url + "Soccer");
+        }
+        if(getIntent().getBooleanExtra("Baseball", false)){
+            request(url + "Baseball");
+        }
+        if(getIntent().getBooleanExtra("Tennis", false)){
+            request(url + "Tennis");
+        }
+        if(getIntent().getBooleanExtra("Basketball", false)){
+            request(url + "Basketball");
+        }
+        if(getIntent().getBooleanExtra("Rec", false)){
+            request(url + "rec");
+        }
     }
 
 
