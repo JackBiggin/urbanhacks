@@ -3,6 +3,8 @@ package me.jackbiggin.urbanhacks.urbanhacks;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
@@ -23,7 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
 
@@ -44,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng point = new LatLng(43.27366276,-79.86750593);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
+        mMap.setOnInfoWindowClickListener(this);
 
         //Adding markers based on request
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=";
@@ -72,7 +76,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(getIntent().getBooleanExtra("Rec", false)){
             request(url + "rec", 215F);
         }
+
+        //last 2 colours 224, 240
     }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Opening Location Info",
+                Toast.LENGTH_SHORT).show();
+        Log.d("code3", marker.getTitle());
+    }
+
 
 
     public void request(String url, final Float colour) {
