@@ -2,4 +2,14 @@
     <string name="app_name">Urban Hacks</string>
     <string name="title_activity_maps">Map</string>
     <string name="start">Start!</string>
+    <string name="tennis">Tennis</string>
+    <string name="rec_community_centers">Rec/Community Centers</string>
+    <string name="basketball">Basketball</string>
+    <string name="baseball">Baseball</string>
+    <string name="soccer">Soccer</string>
+    <string name="campgrounds">Campgrounds</string>
+    <string name="beaches">Beaches</string>
+    <string name="arenas">Arenas</string>
+    <string name="select_attractions_to_search_for">Select Attractions To Search For:</string>
+    <string name="todo">TODO</string>
 </resources>
