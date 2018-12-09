@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -56,5 +62,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Boolean area = getIntent().getBooleanExtra("TEST", false);
         Log.d("DAB ON EM          ", String.valueOf(area));
+
+        //network code
+        Log.d("abc3", "Starting network request");
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://www.google.com";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.d("abc3 Response is: ", response.substring(0,500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("abc3 BIG ERROR WATCH OUT:","Something is terribly wrong");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        Log.d("abc3", "Request Made");
     }
 }
