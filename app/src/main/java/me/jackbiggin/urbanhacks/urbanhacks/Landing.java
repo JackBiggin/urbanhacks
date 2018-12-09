@@ -12,7 +12,6 @@ public class Landing extends AppCompatActivity {
 
     private Button button;
     private CheckBox Arena;
-    private boolean isArena = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class Landing extends AppCompatActivity {
 
 
         Arena = (CheckBox) findViewById(R.id.Arenas);
-        Log.d("test                   ", String.valueOf(Arena.isChecked()));
+
         intent.putExtra("TEST", Arena.isChecked());
         startActivity(intent);
     }
