@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,12 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        //get passed variables
+        LatLng point = new LatLng(43.27366276,-79.86750593);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
 
         Boolean Arena = getIntent().getBooleanExtra("Arena", false);
         Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
@@ -70,7 +67,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Boolean Tennis = getIntent().getBooleanExtra("Tennis", false);
         Boolean Basketball = getIntent().getBooleanExtra("Basketball", false);
         Boolean Rec = getIntent().getBooleanExtra("Rec", false);
-        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks?category=beach";
+
+        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=beach";
         request(url);
     }
 
@@ -104,12 +102,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             for (Location s : objList) {
-                Log.d("Net code3", s.name + s.x + s.y);
+                addMarker(s.name , s.x , s.y);
             }
 
         } catch (Exception e) {
             Log.d("Net code3", e.toString());
         }
+    }
+
+    public void addMarker(String name, double x, double y){
+        // Add a marker in Sydney and move the camera
+        LatLng point = new LatLng(x, y);
+        mMap.addMarker(new MarkerOptions().position(point).title(name));
     }
 }
 
