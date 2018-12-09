@@ -1,17 +1,28 @@
 package me.jackbiggin.urbanhacks.urbanhacks;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -29,11 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void openmap(){
+    public void openmap() {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
-
 
 
     /**
@@ -47,11 +57,64 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        //get passed variables
+
+        Boolean area = getIntent().getBooleanExtra("TEST", false);
+        Log.d("DAB ON EM          ", String.valueOf(area));
+
+        String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks?category=beach";
+        request(url);
     }
+
+
+    public void request(String url) {
+        //network code
+        Log.d("Net code", "Starting network request");
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Net code3 response:", response);
+                        parse(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Net code3", "Something is terribly wrong");
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    public void parse(String data) {
+        try {
+            Gson googleJson = new Gson();
+            Type type = new TypeToken<List<Location>>(){}.getType();
+            List<Location> objList = googleJson.fromJson(data, type);
+
+
+            for (Location s : objList) {
+                Log.d("Net code3", s.name + s.x + s.y);
+            }
+
+        } catch (Exception e) {
+            Log.d("Net code3", e.toString());
+        }
+    }
+}
+
+class Location{
+    String name;
+    double x;
+    double y;
 }
