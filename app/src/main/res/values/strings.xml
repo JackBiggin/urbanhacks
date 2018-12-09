@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Urban Hacks</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="start">Start!</string>
-    <string name="tennis">Tennis</string>
+    <string name="title_activity_maps"></string>
+    <string name="start">Search!</string>
+    <string name="tennis">Tennis Courts</string>
     <string name="rec_community_centers">Recreation Centers</string>
-    <string name="basketball">Basketball</string>
-    <string name="baseball">Baseball</string>
-    <string name="soccer">Soccer</string>
+    <string name="basketball">Basketball Courts</string>
+    <string name="baseball">Baseball Fields</string>
+    <string name="soccer">Soccer Fields</string>
     <string name="campgrounds">Campgrounds</string>
     <string name="beaches">Beaches</string>
     <string name="arenas">Arenas</string>
