@@ -13,24 +13,121 @@
         android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="329dp"
         android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logoblack"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="20dp"
         tools:srcCompat="@drawable/logoblack" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="300dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/select_attractions_to_search_for"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <CheckBox
         android:id="@+id/Arenas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Arenas"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="176dp" />
+        android:layout_width="172dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/arenas"
+        app:layout_constraintBottom_toTopOf="@+id/Beaches"
+        app:layout_constraintEnd_toStartOf="@+id/Baseball"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/Beaches"
+        android:layout_width="173dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/beaches"
+        app:layout_constraintBottom_toTopOf="@+id/Campgrounds"
+        app:layout_constraintEnd_toStartOf="@+id/Tennis"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/Campgrounds"
+        android:layout_width="173dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/campgrounds"
+        app:layout_constraintBottom_toTopOf="@+id/Soccer"
+        app:layout_constraintEnd_toStartOf="@+id/Basketball"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/Soccer"
+        android:layout_width="172dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="140dp"
+        android:text="@string/soccer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Rec"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/Baseball"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/baseball"
+        app:layout_constraintBottom_toTopOf="@+id/Tennis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Arenas"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/Tennis"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:text="@string/tennis"
+        app:layout_constraintBottom_toTopOf="@+id/Basketball"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Beaches" />
+
+    <CheckBox
+        android:id="@+id/Basketball"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:text="@string/basketball"
+        app:layout_constraintBottom_toTopOf="@+id/Rec"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Campgrounds" />
+
+    <CheckBox
+        android:id="@+id/Rec"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="140dp"
+        android:text="@string/rec_community_centers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Soccer" />
+
 </android.support.constraint.ConstraintLayout>
