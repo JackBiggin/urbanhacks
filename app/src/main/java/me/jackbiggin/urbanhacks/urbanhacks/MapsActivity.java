@@ -62,9 +62,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //get passed variables
 
-        Boolean area = getIntent().getBooleanExtra("TEST", false);
-        
-
+        Boolean Arena = getIntent().getBooleanExtra("Arena", false);
+        Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
+        Boolean Campgrounds = getIntent().getBooleanExtra("Campgrounds", false);
+        Boolean Soccer = getIntent().getBooleanExtra("Soccer", false);
+        Boolean Baseball = getIntent().getBooleanExtra("Baseball", false);
+        Boolean Tennis = getIntent().getBooleanExtra("Tennis", false);
+        Boolean Basketball = getIntent().getBooleanExtra("Basketball", false);
+        Boolean Rec = getIntent().getBooleanExtra("Rec", false);
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks?category=beach";
         request(url);
     }
