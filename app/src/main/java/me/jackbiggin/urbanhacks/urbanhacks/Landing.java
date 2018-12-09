@@ -11,8 +11,7 @@ import android.widget.CheckBox;
 public class Landing extends AppCompatActivity {
 
     private Button button;
-    private CheckBox Arena;
-    private boolean isArena = false;
+    private CheckBox Arena, Beaches, Campgrounds, Soccer, Baseball, Tennis, Basketball, Rec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,22 @@ public class Landing extends AppCompatActivity {
 
 
         Arena = (CheckBox) findViewById(R.id.Arenas);
-        Log.d("test                   ", String.valueOf(Arena.isChecked()));
-        intent.putExtra("TEST", Arena.isChecked());
+        Beaches = (CheckBox) findViewById(R.id.Beaches);
+        Campgrounds = (CheckBox) findViewById(R.id.Campgrounds);
+        Soccer = (CheckBox) findViewById(R.id.Soccer);
+        Baseball = (CheckBox) findViewById(R.id.Baseball);
+        Tennis = (CheckBox) findViewById(R.id.Tennis);
+        Basketball = (CheckBox) findViewById(R.id.Basketball);
+        Rec = (CheckBox) findViewById(R.id.Rec);
+
+        intent.putExtra("Arena", Arena.isChecked());
+        intent.putExtra("Beaches", Beaches.isChecked());
+        intent.putExtra("Campgrounds", Campgrounds.isChecked());
+        intent.putExtra("Soccer", Soccer.isChecked());
+        intent.putExtra("Baseball", Baseball.isChecked());
+        intent.putExtra("Tennis", Tennis.isChecked());
+        intent.putExtra("Basketball",  Basketball.isChecked());
+        intent.putExtra("Rec", Rec.isChecked());
         startActivity(intent);
 
 

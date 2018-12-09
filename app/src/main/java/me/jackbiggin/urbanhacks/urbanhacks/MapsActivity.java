@@ -41,11 +41,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void openmap() {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
 
     /**
      * Manipulates the map once available.
@@ -64,8 +59,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng point = new LatLng(43.27366276,-79.86750593);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,8.51f));
 
-        Boolean area = getIntent().getBooleanExtra("TEST", false);
-        Log.d("DAB ON EM          ", String.valueOf(area));
+        Boolean Arena = getIntent().getBooleanExtra("Arena", false);
+        Boolean Beaches = getIntent().getBooleanExtra("Beaches", false);
+        Boolean Campgrounds = getIntent().getBooleanExtra("Campgrounds", false);
+        Boolean Soccer = getIntent().getBooleanExtra("Soccer", false);
+        Boolean Baseball = getIntent().getBooleanExtra("Baseball", false);
+        Boolean Tennis = getIntent().getBooleanExtra("Tennis", false);
+        Boolean Basketball = getIntent().getBooleanExtra("Basketball", false);
+        Boolean Rec = getIntent().getBooleanExtra("Rec", false);
 
         String url = "http://pleasegiveusafreeraspberrypi.com/urbanhacks/api.php?category=beach";
         request(url);
